@@ -3,10 +3,16 @@ const Segment = require("../models/Segment");
 const Customer = require("../models/Customer");
 const CommunicationLog = require("../models/CommunicationLog");
 
+
+
+require("dotenv").config();
+
+
 // Simulate 90% success rate
 function simulateSendMessage() {
   return Math.random() < 0.9;
 }
+
 
 const mongoose = require("mongoose");
 
@@ -128,5 +134,42 @@ exports.deleteCampaign = async (req, res) => {
     res.json({ message: "Campaign deleted successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+};
+
+// controller/analyticsController.js
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+exports.getCampaignSummaryAI = async (req, res) => {
+  try {
+    const logs = await CommunicationLog.find({}).populate("campaignId");
+
+    const stats = {};
+    logs.forEach((log) => {
+      const campName = log.campaignId?.name || "Unknown Campaign";
+      if (!stats[campName]) stats[campName] = { sent: 0, failed: 0 };
+      if (log.status === "SENT") stats[campName].sent++;
+      else if (log.status === "FAILED") stats[campName].failed++;
+    });
+
+    const summaryText = Object.entries(stats)
+      .map(([name, { sent, failed }]) => `Campaign "${name}" - Sent: ${sent}, Failed: ${failed}`)
+      .join("\n");
+
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+
+    const result = await model.generateContent(
+      `Please analyze and summarize this campaign performance data (give in 2-3 lines , include stats and figures ):\n\n${summaryText}`
+    );
+
+    const response = await result.response;
+    const text = response.text();
+
+    res.json({ summary: text });
+  } catch (error) {
+    console.error("Gemini summary error:", error.message || error);
+    res.status(500).json({ error: "Failed to generate Gemini summary" });
   }
 };

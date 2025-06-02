@@ -10,5 +10,6 @@ campaignRouter.get("/", campaignController.getAllCampaigns);
 campaignRouter.get("/:id", campaignController.getCampaignById);
 campaignRouter.put("/:id", validateCreateCampaign, validate, campaignController.updateCampaign);
 campaignRouter.delete("/:id", campaignController.deleteCampaign);
+campaignRouter.get("/summary/ai", campaignController.getCampaignSummaryAI);
 
 module.exports = campaignRouter;
