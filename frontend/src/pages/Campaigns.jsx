@@ -50,32 +50,6 @@ function CampaignCard({ campaign, onEdit, onDelete }) {
             <span className="text-muted">{campaign.audienceSize}</span>
           </p>
           <div className="d-flex justify-content-center gap-3">
-            <button
-              className="btn btn-outline-dark btn-sm"
-              title="Edit Campaign"
-              style={{ fontWeight: "600", borderRadius: "8px" }}
-              onClick={() => onEdit(campaign)}
-            >
-              <FaEdit className="me-1" />
-              Edit
-            </button>
-            <button
-              className="btn btn-outline-danger btn-sm"
-              title="Delete Campaign"
-              style={{ fontWeight: "600", borderRadius: "8px" }}
-              onClick={() => {
-                if (
-                  window.confirm(
-                    `Are you sure you want to delete the campaign "${campaign.name}"?`
-                  )
-                ) {
-                  onDelete(campaign._id);
-                }
-              }}
-            >
-              <FaTrash className="me-1" />
-              Delete
-            </button>
           </div>
         </div>
       </div>
