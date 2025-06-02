@@ -161,7 +161,7 @@ exports.getCampaignSummaryAI = async (req, res) => {
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
     const result = await model.generateContent(
-      `Please analyze and summarize this campaign performance data (give in 2-3 lines , include stats and figures ):\n\n${summaryText}`
+      `Please analyze and summarize this campaign performance data (give in 2-3 lines , include stats and figures ) and provide me a positive message:\n\n${summaryText}`
     );
 
     const response = await result.response;
