@@ -11,16 +11,5 @@
       "src": "/(.*)",
       "dest": "server.js"
     }
-  ],
-  "env": {
-    "MONGO_URI": "@MONGO_URI",
-    "REDIS_HOST": "@REDIS_HOST",
-    "REDIS_PORT": "@REDIS_PORT",
-    "REDIS_PASSWORD": "@REDIS_PASSWORD",
-    "GOOGLE_CLIENT_ID": "@GOOGLE_CLIENT_ID",
-    "GOOGLE_CLIENT_SECRET": "@GOOGLE_CLIENT_SECRET",
-    "GOOGLE_CALLBACK_URL": "@GOOGLE_CALLBACK_URL",
-    "SESSION_SECRET": "@SESSION_SECRET",
-    "FRONTEND_URL": "@FRONTEND_URL"
-  }
+  ]
 }
