@@ -48,6 +48,44 @@ This is my submission for the **SDE Internship at Xeno**. The project demonstrat
 
 ---
 
+---
+
+### 📦 Architecture:
+
+```plaintext
+ ──────────────────────────────┐
+│ MINI_CRM_PLATFORM            │
+└──────────────────────────────┘
+        │
+        └── mini-crm
+             ├── ┌──────────────┐       ┌──────────────┐
+             │   │   backend    │───────│   frontend   │
+             │   └──────────────┘       └──────────────┘
+             │          │                  │
+             │          ├── config         │── public
+             │          ├── controllers    │── services
+             │          ├── middleware     │     └── api
+             │          ├── models         │── src
+             │          ├── publishers     │     ├── components
+             │          ├── routes         │     ├── contexts
+             │          ├── subscribers    │     ├── layouts
+             │          ├── uploads        │     ├── pages
+             │          ├── validators     │     ├── routes
+             │          ├── .env           │     ├── widgets
+             │          ├── .gitignore     │     ├── App.jsx
+             │          ├── package.json   │     ├── firebase.js
+             │          ├── package-lock.json│   ├── index.css
+             │          ├── server.js      │     ├── main.jsx
+             │          └── node_modules   │     ├── .env
+             │                             │     ├── .gitignore
+             │                             │     ├── index.html
+             │                             │     ├── package.json
+             │                             │     ├── package-lock.json
+             │                             │     ├── vite.config.js
+             │                             │     └── node_modules
+             └── ... (other root level files)
+```
+
 ## 📦 Local Setup Instructions
 
 ### 1 Backend Setup
@@ -75,16 +113,24 @@ Tokens are managed via session cookies
 
 ## 🧠 AI Integration Details
 Feature	Tool/API Used	Description
+
 Campaign Summary Generator	Gemini-2.0-flash	Summarizes delivery stats into human-readable form
+
 Prompt Engineering	Custom Prompt	Tailored prompts for better insights
 
 ## 🛠 Tech Stack Used
 Layer	Technology
+
 Frontend	React.js (Vite + Bootstrap)
+
 Backend	Node.js (Express.js)
+
 Auth	Passport + Google OAuth 2.0
+
 Database	MongoDB (Mongoose)
+
 Messaging	Redis Streams
+
 Gemini-2.0-flash
 
 ## 🧪 Testing & Demo
