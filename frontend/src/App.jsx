@@ -77,7 +77,7 @@ import Dashboard from "./pages/Dashboard";
 import Customers from "./pages/Customers";
 import Orders from "./pages/Orders";
 import Segments from "./pages/Segments";
-import Campaigns from "./pages/campaigns";
+import Campaigns from "./pages/Campaigns";
 import CommunicationLogs from "./pages/CommunicationLogs";
 import Analytics from "./pages/Analytics";
 import LoginPage from "./pages/LoginPage";
